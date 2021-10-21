@@ -24,16 +24,17 @@ public class Machine implements Serializable {
     private String description;
 
     @ManyToOne
-    @JoinColumn(name = "category")
+    @JoinColumn(name = "categoryId")
     @JsonIgnoreProperties("machines")
     private Category category;
 
     @OneToMany(cascade = {CascadeType.PERSIST}, mappedBy = "machine")
-    @JsonIgnoreProperties("machine")
+    @JsonIgnoreProperties({"machine", "client"})
     public List<Message> messages;
-    @OneToMany(cascade = {CascadeType.PERSIST}, mappedBy = "machine")
-    @JsonIgnoreProperties("machine")
-    public List<Reservation> reservations;
+
+    @OneToMany(cascade = {CascadeType.PERSIST},mappedBy = "machine")
+    @JsonIgnoreProperties({"machine", "client"})
+    private List<Reservation> reservations;
 
     /**
      * get y set
@@ -78,6 +79,14 @@ public class Machine implements Serializable {
         this.description = description;
     }
 
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
+
     public List<Message> getMessages() {
         return messages;
     }
@@ -92,13 +101,5 @@ public class Machine implements Serializable {
 
     public void setReservations(List<Reservation> reservations) {
         this.reservations = reservations;
-    }
-
-    public Category getCategory() {
-        return category;
-    }
-
-    public void setCategory(Category category) {
-        this.category = category;
     }
 }

@@ -4,10 +4,11 @@ package com.usa.ciclo3.ciclo3.model;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "message")
-public class Message {
+public class Message implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -15,13 +16,13 @@ public class Message {
     private String messageText;
 
     @ManyToOne
-    @JoinColumn(name = "machine")
-    @JsonIgnoreProperties({"messages", "reservations"})
+    @JoinColumn(name = "id")
+    @JsonIgnoreProperties({"messages", "client", "reservations"})
     private Machine machine;
 
     @ManyToOne
-    @JoinColumn(name = "idClient")
-    @JsonIgnoreProperties({"messages", "reservations"})
+    @JoinColumn(name = "clientId")
+    @JsonIgnoreProperties({"messages", "client", "reservations"})
     private Client client;
 
     public Integer getIdMessage() {
