@@ -35,5 +35,18 @@ public class CategoryController {
         return categoryService.save(cs);
     }
 
+    @PutMapping("/update")
+    @ResponseStatus(HttpStatus.CREATED)
+    public Category update(@RequestBody Category cud){
+        return categoryService.update(cud);
+    }
+
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public boolean deleteCategory(@PathVariable("id") int id){
+        return categoryService.deleteCategory(id);
+    }
+
+
 
 }

@@ -8,19 +8,20 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 import java.util.Optional;
 
-/**
- * MachineRepository hace uso de CrudRepository
+/*
+  MachineRepository hace uso de CrudRepository
  */
 
-/**
+/*
  * @Repository: Es el package que contiene las interfaces que extienden de JPA
  * para que estas clases se conecten a la base de datos. Estas gestionan información
  * ya sea de buscar, borrar, actualizar o crear un registro en la base de datos.
  */
+
 @Repository
 public class MachineRepository {
 
-    /**
+    /*
      * Spring @Autowired es una de las anotaciones más habituales cuando trabajamos
      * con Spring Framework ya que se trata de la anotación que permite inyectar unas
      * dependencias con otras dentro de Spring .
@@ -28,7 +29,7 @@ public class MachineRepository {
     @Autowired
     private MachineCrudRepository machineCrudRepository;
 
-    /**
+    /*
      * ********************  METODOS GET DE MACHINE  ********************
      * <p>
      * Metodo que consulta en la BD todos los elementos de la tabla "Machine" y
@@ -38,7 +39,7 @@ public class MachineRepository {
         return (List<Machine>) machineCrudRepository.findAll();
     }
 
-    /**
+    /*
      * Un Optional es una clase que puede o no contener un valor, es decir,
      * que se comporta como un wrapper para cualquier tipo de objeto que pueda o no ser nulo.
      */
@@ -46,10 +47,18 @@ public class MachineRepository {
         return machineCrudRepository.findById(id);
     }
 
-    /**
+    /*
      * ********************  METODO SAVE DE MACHINE (ms) ********************
      */
     public Machine save(Machine ms) {
         return machineCrudRepository.save(ms);
     }
+
+    /*
+     * ********************  METODO DELETE DE MACHINE (md) ********************
+     */
+    public void delete(Machine md) {
+        machineCrudRepository.delete(md);
+    }
+
 }

@@ -1,6 +1,7 @@
 package com.usa.ciclo3.ciclo3.web;
 
 
+import com.usa.ciclo3.ciclo3.model.Machine;
 import com.usa.ciclo3.ciclo3.model.Message;
 import com.usa.ciclo3.ciclo3.service.MessageService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,5 +36,16 @@ public class MessageController {
         return messageService.save(mess);
     }
 
+    @PutMapping("/update")
+    @ResponseStatus(HttpStatus.CREATED)
+    public Message update(@RequestBody Message msup){
+        return messageService.update(msup);
+    }
+
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public boolean deleteMessage(@PathVariable("id") int id){
+        return messageService.deleteMessage(id);
+    }
 
 }

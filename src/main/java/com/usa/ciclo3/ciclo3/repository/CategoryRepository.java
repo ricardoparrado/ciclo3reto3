@@ -1,6 +1,7 @@
 package com.usa.ciclo3.ciclo3.repository;
 
 import com.usa.ciclo3.ciclo3.model.Category;
+import com.usa.ciclo3.ciclo3.model.Machine;
 import com.usa.ciclo3.ciclo3.repository.crud.CategoryCrudRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -25,5 +26,9 @@ public class CategoryRepository {
 
     public Category save(Category cs) {
         return categoryCrudRepository.save(cs);
+    }
+
+    public void delete(Category cd) {
+        categoryCrudRepository.delete(cd);
     }
 }

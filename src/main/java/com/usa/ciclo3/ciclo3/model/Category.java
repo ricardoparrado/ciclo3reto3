@@ -19,7 +19,7 @@ public class Category implements Serializable {
 
     @OneToMany(cascade = {CascadeType.PERSIST}, mappedBy = "category")
     @JsonIgnoreProperties("category")
-    public List<Machine> machines;
+    private List<Machine> machines;
 
 
     public Integer getId() {

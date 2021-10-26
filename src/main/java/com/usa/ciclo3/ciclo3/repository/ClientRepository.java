@@ -2,6 +2,7 @@ package com.usa.ciclo3.ciclo3.repository;
 
 
 import com.usa.ciclo3.ciclo3.model.Client;
+import com.usa.ciclo3.ciclo3.model.Machine;
 import com.usa.ciclo3.ciclo3.repository.crud.ClientCrudRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -26,5 +27,9 @@ public class ClientRepository {
 
     public Client save(Client cls) {
         return clientCrudRepository.save(cls);
+    }
+
+    public void delete(Client cld) {
+        clientCrudRepository.delete(cld);
     }
 }

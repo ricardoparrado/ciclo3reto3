@@ -28,7 +28,6 @@ public class UAdministratorController {
         return uAdministratorService.getUAdministrator(id);
     }
 
-
     @PostMapping("/save")
     @ResponseStatus(HttpStatus.CREATED)
     public UAdministrator save(@RequestBody UAdministrator uads) {

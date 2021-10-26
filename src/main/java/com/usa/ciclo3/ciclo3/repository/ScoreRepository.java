@@ -1,6 +1,7 @@
 package com.usa.ciclo3.ciclo3.repository;
 
 
+import com.usa.ciclo3.ciclo3.model.Machine;
 import com.usa.ciclo3.ciclo3.model.Score;
 import com.usa.ciclo3.ciclo3.repository.crud.ScoreCrudRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,5 +27,9 @@ public class ScoreRepository {
 
     public Score save(Score ss) {
         return scoreCrudRepository.save(ss);
+    }
+
+    public void delete(Score sd) {
+        scoreCrudRepository.delete(sd);
     }
 }

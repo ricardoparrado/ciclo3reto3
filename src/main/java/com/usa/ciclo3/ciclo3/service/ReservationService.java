@@ -1,6 +1,7 @@
 package com.usa.ciclo3.ciclo3.service;
 
 
+import com.usa.ciclo3.ciclo3.model.Machine;
 import com.usa.ciclo3.ciclo3.model.Reservation;
 import com.usa.ciclo3.ciclo3.repository.ReservationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,4 +36,35 @@ public class ReservationService {
             }
         }
     }
+
+    public Reservation update(Reservation rup) {
+        if (rup.getIdReservation() != null) {
+            Optional<Reservation> reservationAuxiliar = reservationRepository.getReservation(rup.getIdReservation());
+            if (reservationAuxiliar.isPresent()) {
+                if (rup.getStartDate() != null) {
+                    reservationAuxiliar.get().setStartDate(rup.getStartDate());
+                }
+                if (rup.getDevolutionDate() != null) {
+                    reservationAuxiliar.get().setDevolutionDate(rup.getDevolutionDate());
+                }
+                if (rup.getStatus() != null) {
+                    reservationAuxiliar.get().setStatus(rup.getStatus());
+                }
+                return reservationRepository.save(reservationAuxiliar.get());
+            }
+        }
+        return rup;
+
+    }
+
+    public boolean deleteReservation(int id) {
+        Optional<Reservation> reservationAuxiliar = getReservation(id);
+        if (reservationAuxiliar.isPresent()) {
+            reservationRepository.delete(reservationAuxiliar.get());
+            return true;
+        }
+        return false;
+
+    }
+
 }

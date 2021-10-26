@@ -1,6 +1,7 @@
 package com.usa.ciclo3.ciclo3.repository;
 
 
+import com.usa.ciclo3.ciclo3.model.Machine;
 import com.usa.ciclo3.ciclo3.model.UAdministrator;
 import com.usa.ciclo3.ciclo3.repository.crud.UAdministratorCrudRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,5 +27,9 @@ public class UAdministratorRepository {
 
     public UAdministrator save(UAdministrator uads) {
         return uAdministratorCrudRepository.save(uads);
+    }
+
+    public void delete(UAdministrator uad) {
+        uAdministratorCrudRepository.delete(uad);
     }
 }
