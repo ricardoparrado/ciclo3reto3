@@ -1,12 +1,17 @@
 package com.usa.ciclo3.ciclo3.service;
 
 
-import com.usa.ciclo3.ciclo3.model.Machine;
 import com.usa.ciclo3.ciclo3.model.Reservation;
+import com.usa.ciclo3.ciclo3.model.custom.CountClient;
+import com.usa.ciclo3.ciclo3.model.custom.StatusCount;
 import com.usa.ciclo3.ciclo3.repository.ReservationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -65,6 +70,34 @@ public class ReservationService {
         }
         return false;
 
+    }
+
+    public StatusCount reportStatusService (){
+        List<Reservation>completed= reservationRepository.ReservationStatusRepository("completed");
+        List<Reservation>cancelled= reservationRepository.ReservationStatusRepository("cancelled");
+
+        return new StatusCount(completed.size(), cancelled.size() );
+    }
+    public List<Reservation> reportTimeService (String datoA, String datoB){
+        SimpleDateFormat parser = new SimpleDateFormat ("yyyy-MM-dd");
+
+        Date datoUno = new Date();
+        Date datoDos = new Date();
+
+        try{
+            datoUno = parser.parse(datoA);
+            datoDos = parser.parse(datoB);
+        }catch(ParseException evt){
+            evt.printStackTrace();
+        }if(datoUno.before(datoDos)){
+            return reservationRepository.ReservationTimeRepository(datoUno, datoDos);
+        }else{
+            return new ArrayList<>();
+
+        }
+    }
+    public List<CountClient> reportClientsService(){
+        return reservationRepository.getClientRepository();
     }
 
 }
